@@ -1,0 +1,36 @@
+
+...
+
+Version 0.5.4
+
+1) polycount has a few bugs for very small problem (i.e. 2 lines in R2, or all lines are parallel). An error message will be thrown if users try to use polycount for arrangement with dim > 2. 
+
+2) NICERd: added an option to turn off acceleration. If hyperplanes are not in general position, an error will be thrown to tell user to turn off acceleration. This is a temporary measure, at the end of the day, would like to figure out a way to accelerate even when hyperplanes are degenerate (ie. all through origin, or less extreme).
+
+3) NICER: intended to be used for dim = 2, now will throw an error if user feed in hyperplanes of dim > 2. Same with polyzone, which is also constructed for dim = 2.
+
+4) Added a demo on arrangement for dim = 2.
+
+Version 0.5.5
+
+1) witness function: seems there is a mosek bug. Try the following problem, mosek gives optimal answer (0,0,0), while (-2,1,1) is clearly giving a larger objective value. 
+
+Interior = list()
+Interior$sense = "max"
+Interior$c = c(0,0,1)
+blx = c(-Inf,-Inf,0)
+bux = c(Inf,Inf,1)
+Interior$bx = rbind(blx, bux)
+S = diag(c(-1,1,1))
+A0 = cbind(c(1,0,-1),c(0,1,-1))
+A = cbind(S%*%A0, matrix(-1,3,1))
+Interior$A = Matrix(A, sparse=TRUE)
+buc = c(rep(Inf,3))
+blc = c(rep(0,3))
+Interior$bc = rbind(blc, buc)
+r = mosek(Interior)
+
+Fix (Mosek responded that it is indeed a bug for Mosek 7 and 8 (not for Mosek 9), 
+email correspondence Sept 28,2020) and suggested changing 
+    Interior$A = as(A, 'dgCMatrix'). 
+
