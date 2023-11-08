@@ -34,3 +34,7 @@ Fix (Mosek responded that it is indeed a bug for Mosek 7 and 8 (not for Mosek 9)
 email correspondence Sept 28,2020) and suggested changing 
     Interior$A = as(A, 'dgCMatrix'). 
 
+0.6.1  
+
+1.  Fixed packageVersion problem as suggested by Kurt.
+2.  Reduced dimension of example for rcbr to comply with CRAN time limits.

@@ -58,7 +58,7 @@ associated with a fitted model.
 {
 if(packageVersion("Rmosek") > "8.0.0"){
     # Simple Test Problem for rcbr
-    n <- 100
+    n <- 60
     B0 = rbind(c(0.7,-0.7,1),c(-0.7,0.7,1))
     z <- rnorm(n)
     v <- rnorm(n)

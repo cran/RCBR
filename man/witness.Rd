@@ -33,7 +33,7 @@ List with components:
 Find (if possible) an interior point of a polytope solving a linear program
 }
 \details{
-Solves LP:  max over {w,eps} {eps | SAw - eps >= Sb, 0 < eps <= epsbound}
+Solves LP:  \eqn{max over {w,eps} {eps | SAw - eps >= Sb, 0 < eps <= epsbound}}
 S is diag(s),  if at the solution eps > 0, then w is a valid interior point
 otherwise the LP fails to find an interior point, another s must be tried.
 Constructs a problem formulation that can be passed to Rmosek for solution.
